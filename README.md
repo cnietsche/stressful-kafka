@@ -7,7 +7,7 @@ Ambiente de estresse para testar Kafka com uma API que processa mensagens lentam
 - **frontend-web** — React + TypeScript; botões para enviar 1/10/100 requests e count atualizado a cada 5s
 - **backend-api** — Spring Boot; recebe HTTP e publica mensagens no Kafka
 - **stress-api** — Spring Boot; consome Kafka, simula processamento pesado (1s) e persiste em H2 in-memory
-- **kafka** — Bitnami Kafka (KRaft, sem Zookeeper)
+- **kafka** — Apache Kafka oficial (KRaft, sem Zookeeper)
 
 Mensagens de **count** usam tópico e consumer group separados, então o refresh do frontend não trava mesmo com fila grande de processamento.
 
