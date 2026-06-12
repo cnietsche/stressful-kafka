@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.TopicBuilder;
 import org.springframework.kafka.core.ConsumerFactory;
-import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
 import org.springframework.kafka.listener.ContainerProperties;
 import org.springframework.kafka.requestreply.ReplyingKafkaTemplate;
@@ -49,10 +49,10 @@ public class KafkaConfig {
 
     @Bean
     ReplyingKafkaTemplate<String, String, String> replyingKafkaTemplate(
-            KafkaTemplate<String, String> kafkaTemplate,
+            ProducerFactory<String, String> producerFactory,
             ConcurrentMessageListenerContainer<String, String> replyContainer) {
         ReplyingKafkaTemplate<String, String, String> template =
-                new ReplyingKafkaTemplate<String, String, String>(kafkaTemplate, replyContainer);
+                new ReplyingKafkaTemplate<>(producerFactory, replyContainer);
         template.setDefaultReplyTimeout(Duration.ofSeconds(5));
         replyContainer.start();
         return template;
