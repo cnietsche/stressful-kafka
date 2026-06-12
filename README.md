@@ -17,11 +17,10 @@ Mensagens de **count** usam tópico e consumer group separados, então o refresh
 docker compose up --build
 ```
 
-Acesse no browser: `http://<IP-DA-VM>/`
+Acesse no browser: `http://<IP-DA-VM>:8080/`
 
 Portas expostas:
-- `80` — frontend
-- `8080` — backend-api (opcional, acesso direto)
+- `8080` — frontend (nginx + proxy para backend-api)
 - `9092` — Kafka (opcional, debug)
 
 ## Cenário de teste

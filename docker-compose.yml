@@ -31,8 +31,6 @@ services:
     build: ./backend-api
     environment:
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
-    ports:
-      - "8080:8080"
     depends_on:
       kafka:
         condition: service_healthy
@@ -40,6 +38,6 @@ services:
   frontend-web:
     build: ./frontend-web
     ports:
-      - "80:80"
+      - "8080:80"
     depends_on:
       - backend-api
