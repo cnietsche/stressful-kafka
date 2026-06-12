@@ -3,7 +3,6 @@ package com.stress.config;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.config.TopicBuilder;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -53,7 +52,7 @@ public class KafkaConfig {
             KafkaTemplate<String, String> kafkaTemplate,
             ConcurrentMessageListenerContainer<String, String> replyContainer) {
         ReplyingKafkaTemplate<String, String, String> template =
-                new ReplyingKafkaTemplate<>(kafkaTemplate, replyContainer);
+                new ReplyingKafkaTemplate<String, String, String>(kafkaTemplate, replyContainer);
         template.setDefaultReplyTimeout(Duration.ofSeconds(5));
         replyContainer.start();
         return template;
